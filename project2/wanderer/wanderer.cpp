@@ -69,8 +69,8 @@ int main( int argc, char* argv[] )
 	ros::NodeHandle nh;
 	ros::Rate loop_rate(10);
 
-	ros::Subscriber laser_sub = nh.subscribe("/base_scan", 1000, laserCallback);
-	ros::Publisher cmd_vel = nh.advertise<geometry_msgs::Twist>("/cmd_vel",1000);
+	ros::Subscriber laser_sub = nh.subscribe("/robot_0/base_scan", 1000, laserCallback);
+	ros::Publisher cmd_vel = nh.advertise<geometry_msgs::Twist>("/robot_0/cmd_vel",1000);
 	geometry_msgs::Twist cmd_vel_msg;
 	double des_vel = 1.0;
 
@@ -93,11 +93,11 @@ int main( int argc, char* argv[] )
 				lvel = front_dist - 0.35;
 			// If the robot has an obstacle closer to the left of the robot
 				// the robot should turn right.
-			if( left_dist < right_dist + 0.1 )
+			if( left_dist < right_dist + 0.1 && left_dist < 1.0 )
 				rvel = 0.5;
 			// If the robot detects an obstacle closer to the right of the robot
 				// the robot should turn left.
-			if( right_dist < left_dist + 0.1 )
+			if( right_dist < left_dist + 0.1 && right_dist < 1.0 )
 				rvel = -0.5;
 
 		/***************************************/
