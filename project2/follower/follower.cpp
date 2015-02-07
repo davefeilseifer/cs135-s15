@@ -6,11 +6,11 @@
 int main( int argc, char* argv[] )
 {
 	// this code initializes a connection to the robot
-	ros::init(argc,argv,"wanderer");
+	ros::init(argc,argv,"follower");
 	ros::NodeHandle nh;
 	ros::Rate loop_rate(10);
 
-	ros::Publisher cmd_vel = nh.advertise<geometry_msgs::Twist>("/cmd_vel",1000);
+	ros::Publisher cmd_vel = nh.advertise<geometry_msgs::Twist>("/robot_1/cmd_vel",1000);
 	geometry_msgs::Twist cmd_vel_msg;
 	double des_vel = 1.0;
 
