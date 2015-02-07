@@ -11,9 +11,9 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
 {
 	// set front, left, and right distances to be really large
 
-	front_dist = 99999999999999999;
-	left_dist  = 99999999999999999;
-	right_dist = 99999999999999999;
+	front_dist = 999999;
+	left_dist  = 999999;
+	right_dist = 999999;
 
 	// loop through the ranges in the sensor scan, one at a time
 	// answer for each range point
