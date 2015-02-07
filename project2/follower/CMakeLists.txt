@@ -109,7 +109,7 @@ add_executable(follower_node follower.cpp)
 # add_dependencies(wanderer_node wanderer_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
- target_link_libraries(follwer_node
+ target_link_libraries(follower_node
    ${catkin_LIBRARIES}
  )
 
