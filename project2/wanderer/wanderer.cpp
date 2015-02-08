@@ -89,16 +89,16 @@ int main( int argc, char* argv[] )
 
 			// if an obstacle is to the front of the robot
 				// the robot should slow down.
-			if( front_dist < 0.75 )
-				lvel = front_dist - 0.35;
+			if( front_dist < 1.25 )
+				lvel = front_dist - 0.85;
 			// If the robot has an obstacle closer to the left of the robot
 				// the robot should turn right.
 			if( left_dist < right_dist + 0.1 && left_dist < 1.0 )
-				rvel = 0.5;
+				rvel = 0.75;
 			// If the robot detects an obstacle closer to the right of the robot
 				// the robot should turn left.
 			if( right_dist < left_dist + 0.1 && right_dist < 1.0 )
-				rvel = -0.5;
+				rvel = -0.75;
 
 		/***************************************/
 
