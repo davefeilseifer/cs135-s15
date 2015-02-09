@@ -3,5 +3,6 @@
   <param name="use_sim_time" value="true"/>
 
   <node name="sim" pkg="stage_ros" type="stageros" args="$(env PWD)/worlds/cave.world"/>
-  <node name="wanderer_node" pkg="wanderer" type="wanderer_node" output="screen"/>
+  <node name="wanderer_node" pkg="wanderer" type="wanderer_node"/>
+  <node name="follower_node" pkg="follower" type="follower_node" output="screen"/>
 </launch>

@@ -76,4 +76,5 @@ floorplan
 
 # throw in a robot
 erratic( pose [ -2 2 0 180.000 ] name "era" color "red")
-block( pose [ -2 3 0 180.000 ] color "red")
+erratic( pose [ 2 2 0 180.000 ] name "era" color "blue")
+#block( pose [ -2 3 0 180.000 ] color "red")
