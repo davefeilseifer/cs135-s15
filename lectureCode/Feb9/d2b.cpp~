@@ -1,0 +1,13 @@
+#include <stdio.h>
+
+int main(){
+
+  int decimal;
+
+  printf("Enter decimal\n", decimal);
+  scanf("%d", &decimal);
+
+
+  return 0;
+
+}
