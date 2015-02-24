@@ -8,6 +8,33 @@
 /************************************/
   // place your functions here
 
+  /*
+    double get_distance( double rx, double ry, double bx, double by )
+
+    returns: the distance between the red and blue robots
+  */
+
+  double get_distance( double rx, double ry, double bx, double by )
+  {
+    return sqrt((rx-bx)*(rx-bx)+(ry-by)*(ry-by));
+  }
+
+
+  /*
+    double get_bearing( double rx, double ry, double bx, double by, double bt )
+    
+    returns: the bearing (from the blue robot's perspective) of the red robot
+  */
+
+  double get_bearing( double rx, double ry, double bx, double by, double bt )
+  {
+    double bear = atan2( ry-by, rx-bx ) -bt;
+    while( bear > M_PI ) bear -= 2*M_PI;
+    while( bear < -M_PI ) bear += 2*M_PI;
+
+    return bear;
+  }
+
 
 /************************************/
 
@@ -69,6 +96,20 @@ int main( int argc, char* argv[] )
 			//place your code here
 		/***************************************/
 
+    double bearing = get_bearing( red_x, red_y, blue_x, blue_y, blue_theta ) ;
+    double range = get_distance( red_x, red_y, blue_x, blue_y );
+  
+
+
+    printf( "range: %0.2f bearing: %0.2f blue_theta: %0.2f\n", range, bearing, blue_theta );
+    
+    rvel = bearing;
+
+    //if( bearing < 0 ) rvel = bearing;
+    //else if( bearing > 0 ) rvel = -bearing;
+
+    lvel = range;
+    if( range < 1.0 ) lvel = 0;
 		/***************************************/
 
 		// send the speeds to the robot
