@@ -8,10 +8,16 @@ int main( int argc, char* argv[] )
 	FILE* infile;
 	infile = fopen( filename, "r" );
 
+	if( infile == NULL )
+	{
+		printf ("%s is not a valid file for reading\n", filename );
+		return -1;
+	}
+
 	char c;
 	while( (c = fgetc(infile)) != EOF )
 	{
-		if( c == " " ) 
+		if( c == ' ' ) 
 		{
 			printf( "THIS IS A SPACE!!!" );
 		}
