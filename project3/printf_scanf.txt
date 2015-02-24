@@ -1,0 +1,82 @@
+Introduction to Scientific Programming
+Computational Problem Solving Using:
+Maple and C
+Mathematica and C
+
+Author:
+Joseph L. Zachary
+Online Resources:
+Maple/C Version
+Mathematica/C Version
+Printf/Scanf Tutorial
+
+In this tutorial we will discuss a few of the details involved in using printf and scanf, which are introduced in Chapter 11. You will be using some example programs in this laboratory. You can use your Web browser to view them or download them as you prefer.
+
+Output with printf
+
+The program printfdemo.c illustrates some of the behavior of printf. Take a look at it, and then compile and run it. You should notice:
+
+To print a character string, supply the string (contained in double quotes) as the parameter to printf. This string is called the format string. The two-character sequence \n displays a newline, and the two-character sequence \t displays a tab.
+To print an int, embed the sequence %d in the format string, and include an integer expression as a second parameter. (The sequence %d is called a conversion specification.) The value of the expression will be displayed in place of the %d.
+To print a double, embed one of the sequences %g, %f, or %e in the format string, and include a floating-point expression as a second parameter. The value of the expression will be displayed in place of the conversion specification. The way that the value will be displayed depends upon which of the three conversion specifications you use.
+The %g specification displays the number as a six-digit mantissa, with an exponent if necessary.
+The %f specification displays the number with six digits after the decimal point and no exponent.
+The %e specification displays the number using scientific notation, with one digit before the decimal point, six after the decimal point, and an exponent.
+To display more than one number, include more than one conversion specification and more than one extra parameter.
+Type Correspondence
+
+It is crucial that the type of the value being displayed match up with the conversion specification. If it doesn't, garbage will be displayed. Modify the calls to printf so that n is used in place of x and x is used in place of n and you'll see what we mean.
+
+Floating-Point Conversion Specifications
+
+Modify printfdemo.c back to its original form. To get a better appreciation for the differences among the three conversion specifications for floating-point numbers, try changing the value of x so that it is extremely large (123456789e30), extremely small (123456789e-30), and moderate (123456.789).
+
+The most generally useful of the floating-point conversion specifications is %g. We suggest that you always use it unless you have a good reason not to.
+
+Conversion Options
+
+Modify printfdemo.c back to its original form (the value of x should be .00000123456789).
+
+It is possible to use more complicated conversion specifications to fine-tune the appearance of the numbers displayed by printf. There are a large number of options, but we will focus on controlling the precision to which floating-point numbers are displayed.
+
+You can ask for 3 digits of precision, for example, by using one of %.3g, %.3f, or %.3e. Change each of the floating-point conversion specifications in printfdemo.c so that it asks for 3 digits of precision, then compile and run the program.
+
+If you don't specify otherwise, the precision defaults to 6. When the precision is p:
+
+the %g specification results in a p-digit mantissa,
+the %f specification results in p digits after the decimal point, and
+the %e specification results in p digits after the decimal point.
+Try out the modified program with extremely large (123456789e30), extremely small (123456789e-30), and moderate (123456.789).
+
+Try setting the precision to 30 and see what happens. Even though doubles only have 15 digits of mantissa, C obligingly displays plenty of garbage digits.
+
+Input with scanf
+
+The program scanfdemo.c in your examples directory illustrates the behavior of scanf. Take a lot at it, and then compile and run it. You should notice
+
+To read an int, supply scanf with a format string containing the conversion specification %d, and include an int variable preceded by an ampersand (&) as the second parameter.
+To read a double, supply scanf with a format string containing the conversion specification %lf (that's a lower case L, not a one), and include a double variable preceded by an ampersand as the second parameter.
+To read more than one number, include more than one conversion specification and more than one extra parameter.
+Importance of the Ampersand
+
+It is important to put the ampersand in front of the variables that appear as parameters to scanf, and it is easy to forget to do this. Remove the ampersand and compile and run the program. The program will crash before it runs to completion. Put the ampersand back. If you see this behavior in the future, check your scanf statements.
+
+Type Correspondence
+
+As with printf, it is important that the type of the variable being read match up with the conversion specification. Try changing the conversion specification in the first call to scanf to %lf. After compiling and running the program, change it back.
+
+How scanf Consumes Input
+
+When scanf is called, it skips over all leading white space (spaces, tabs, and newlines). Try recompiling and running scanfdemo. Each time it prompts for a number, try entering a bunch of newlines, spaces, and tabs before typing the number. The extra white space will have no effect.
+
+After scanf has skipped over white space, it reads until it finds something that doesn't belong in the type of number than it is looking for and then quits. It leaves any remaining input behind for the next call to scanf. Run scanfdemo, and when it prompts for the first number enter
+
+1.2 3.4
+You will see than scanf reads the 1 as an integer, stopping when it encounters the decimal point (which can't be part of an integer). It later reads the .2 as a double, stopping when it encounters the white space. Then it reads the 3 as an integer, and the .4 as a double. Notice that if there is input left over from a previous call, scanf will use it.
+
+Now run the program and enter
+
+x
+None of the calls to scanf can get past the x, so the uninitialized values of the variables are displayed.
+
+Be careful when you supply input to your programs that you only type in properly formatted numbers and white space. While it is possible to write programs that are more robust in the face of bad input, we will not be going into that topic.
