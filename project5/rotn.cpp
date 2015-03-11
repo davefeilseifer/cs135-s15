@@ -22,7 +22,6 @@ int main(int argc, char *argv[]){
   }
   // rotate text
   int c;
-  //  int nRot = abs(n) % (RANGECHAR + 1); //if n is very large/small
   while( (c = fgetc(fp)) != EOF){
     if(!isspace(c)){
       c = rotate(c, n);
@@ -32,24 +31,3 @@ int main(int argc, char *argv[]){
   }
   fclose(fp);
 }
-/*
-int rotate(int c, int nRot, int n){
-  if (n == 0) return c;
-  if(n > 0)
-    return rotatePlus(c + nRot);
-  else
-    return rotateMinus(c - nRot);
-}
-
-int rotatePlus(int sum){
-  int diff = sum - MAXCHAR;
-  if (sum > MAXCHAR) sum = MINCHAR + diff - 1;
-  return sum;
-}
-
-int rotateMinus(int sum){
-  int diff = MINCHAR - sum;
-  if (sum < MINCHAR) sum = MAXCHAR - diff + 1;
-  return sum;
-}
-*/
