@@ -6,11 +6,23 @@ ImageData image_to_array( const char* filename, bool threshold )
 	ImageData ret;
 
 	cv::Mat image;
-    image = cv::imread(filename, CV_LOAD_IMAGE_COLOR);   // Read the file
+    image = cv::imread(filename, CV_LOAD_IMAGE_GRAYSCALE);   // Read the file
 
 	// convert to gray
 	cv::Mat grey;
-	cv::cvtColor(image, grey, CV_BGR2GRAY);
+	//printf( "image [%s] has %d channels\n", filename, image.channels());
+	if( image.channels() > 1 )
+	{
+		cv::cvtColor(image, grey, CV_BGR2GRAY);
+	}
+	else 
+	{
+		//cv::cvtColor(image, grey, CV_BGR2GRAY);
+		grey = image.clone();
+	}
+
+	//printf( "%d %d %ld\n", image.rows, image.cols, (long) image.data );
+	//printf( "%d %d %ld\n", grey.rows, grey.cols, (long) grey.data );
 
 	// threshold image
 
